@@ -6,7 +6,7 @@ from nga import NGA
 nga = NGA()
 db = MySQLdb.connect(host="localhost", user="root", passwd="root", db="nga")
 
-comment_sql = "insert into comments (pid, fid, tid, postdate, content, from_client, lou, postdatetimestamp, comment_to_id, vote_good, vote_bad, authorid, reputation, is_user_quote, isTieTiao) value ('{pid}', '{fid}', '{tid}', '{postdate}', '{content}', '{from_client}', '{lou}', '{postdatetimestamp}', '{comment_to_id}', '{vote_good}', '{vote_bad}', '{authorid}', '{reputation}', '{is_user_quote}', '{isTieTiao}')"
+comment_sql = "insert into comments (pid, fid, tid, postdate , content, from_client, lou, postdatetimestamp, comment_to_id, vote_good, vote_bad, authorid, reputation, is_user_quote, isTieTiao) value ('{pid}', '{fid}', '{tid}', '{postdate}', '{content}', '{from_client}', '{lou}', '{postdatetimestamp}', '{comment_to_id}', '{vote_good}', '{vote_bad}', '{authorid}', '{reputation}', '{is_user_quote}', '{isTieTiao}')"
 c = db.cursor()
 
 if c.execute('select tid, comment_page from subjects where found_news = true') > 1:
@@ -56,7 +56,7 @@ if c.execute('select tid, comment_page from subjects where found_news = true') >
                             isTieTiao=comment['isTieTiao']
                         )
 
-                        print('[', c.execute(sql), ']', comment['content'])
+                        # print('[', c.execute(sql), ']', comment['content'])
 
                 c.execute('update subjects set comment_page = \'{page}\' where tid = \'{tid}\''.format(page=page, tid=comment['tid']))
         except KeyError:

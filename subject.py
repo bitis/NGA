@@ -32,12 +32,13 @@ for x in range(1, 101):
                 if r[0] < subject['lastpost']:
                     c.execute('update subjects set found_news = true, lastpost = {lastpost} where tid = \'{tid}\''
                               .format(tid=subject['tid'], lastpost=subject['lastpost']))
-                    print('[ * ]', subject['subject'])
+                    # print('[ * ]', subject['subject'])
                 else:
                     pass
                     # print('[ - ]', subject['subject'])
             else:
-                print('[', c.execute(sql), ']', subject['subject'])
+                c.execute(sql)
+                # print('[', c.execute(sql), ']', subject['subject'])
         except KeyError:
             print('[ x ]', subject)
 
