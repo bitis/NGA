@@ -57,6 +57,7 @@ if c.execute('select tid, comment_page from subjects where found_news = true') >
                         )
 
                         # print('[', c.execute(sql), ']', comment['content'])
+                        c.execute(sql)
 
                 c.execute('update subjects set comment_page = \'{page}\' where tid = \'{tid}\''.format(page=page, tid=comment['tid']))
         except KeyError:
