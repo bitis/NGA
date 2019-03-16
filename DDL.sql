@@ -35,8 +35,8 @@ create table comments
   vote_good         int comment '被点赞数量',
   vote_bad          int comment '被点踩数量',
   authorid          int comment '作者id',
-  reputation        varchar(255) comment 'unknow',
+  reputation        text comment 'unknow',
   is_user_quote     int comment '是否是引用',
-  isTieTiao         int comment '是否是贴条'
+  isTieTiao         varchar(255) comment '是否是贴条'
 )
   comment '评论';

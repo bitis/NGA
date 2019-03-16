@@ -3,7 +3,7 @@ import MySQLdb
 from nga import NGA
 
 nga = NGA()
-db = MySQLdb.connect(host="localhost", user="root", passwd="root", db="nga")
+db = MySQLdb.connect(host="localhost", user="root", passwd="liuyuan.", db="nga")
 
 subject_sql = "insert into subjects (tid, fid, authorid, subject, postdate, lastpost, replies, forumname) value ('{tid}', '{fid}', '{authorid}', '{subject}', '{postdate}', '{lastpost}', '{replies}', '{forumname}')"
 
