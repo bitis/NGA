@@ -30,15 +30,15 @@ for x in range(1, 101):
             if c.execute('select lastpost from subjects where tid = \'{tid}\''.format(tid=subject['tid'])):
                 r = c.fetchone()
                 if r[0] < subject['lastpost']:
+                    print('[ * ]', subject['subject'])
                     c.execute('update subjects set found_news = true, lastpost = {lastpost} where tid = \'{tid}\''
                               .format(tid=subject['tid'], lastpost=subject['lastpost']))
-                    # print('[ * ]', subject['subject'])
                 else:
                     pass
                     # print('[ - ]', subject['subject'])
             else:
-                c.execute(sql)
                 # print('[', c.execute(sql), ']', subject['subject'])
+                c.execute(sql)
         except KeyError:
             print('[ x ]', subject)
 
