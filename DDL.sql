@@ -1,5 +1,7 @@
 create database nga;
 
+use nga;
+
 create table subjects
 (
   id           int primary key auto_increment,
