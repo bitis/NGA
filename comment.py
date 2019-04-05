@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: <utf-8> -*-
 import MySQLdb
 import html
 
@@ -25,10 +27,14 @@ if c.execute('select tid, comment_page from subjects where found_news = true') >
             continue
 
         try:
+            new_comments_count = 0;
+
             for page in range(subject[1], (data['totalPage'] + 1)):
                 if page != subject[1]:
                     data = nga.t_content(subject[0], page)
                 comments = data['result']
+
+                if comments is None: break
 
                 for comment in comments:
                     if c.execute(
@@ -57,9 +63,13 @@ if c.execute('select tid, comment_page from subjects where found_news = true') >
                         )
 
                         # print('[', c.execute(sql), ']', comment['content'])
-                        c.execute(sql)
+                        new_comments_count += c.execute(sql)
 
                 c.execute('update subjects set comment_page = \'{page}\' where tid = \'{tid}\''.format(page=page, tid=comment['tid']))
+            print('{tid}:\t{new_comments_count}'.format(
+                tid = comment['tid'],
+                new_comments_count = new_comments_count
+            ))
         except KeyError:
             print(comment)
             print(KeyError.with_traceback())
